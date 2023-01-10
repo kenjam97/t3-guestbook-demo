@@ -17,8 +17,8 @@ import { api } from '../utils/api'
           utils.guestbook.getAll.setData(undefined, optimisticUpdate)
         }
       },
-      onSettled: () => {
-        utils.guestbook.getAll.invalidate()
+      onSettled: async () => {
+        await utils.guestbook.getAll.invalidate()
       }
     })
 
@@ -86,13 +86,13 @@ const Home = () => {
           {session ? (
             <>
               <p>Hi {session.user?.name}</p>
-              <button onClick={() => signOut()}>Logout</button>
+              <button onClick={async () => await signOut()}>Logout</button>
               <div className="pt-6">
                 <Form />
               </div>
             </>
           ) : (
-            <button onClick={() => signIn("discord")}>
+            <button onClick={async () => await signIn("discord")}>
               Login with Discord
             </button>
           )}
