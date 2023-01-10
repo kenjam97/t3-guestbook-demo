@@ -86,13 +86,13 @@ const Home = () => {
           {session ? (
             <>
               <p>Hi {session.user?.name}</p>
-              <button onClick={async () => await signOut()}>Logout</button>
+              <button onClick={() => void signOut()}>Logout</button>
               <div className="pt-6">
                 <Form />
               </div>
             </>
           ) : (
-            <button onClick={async () => await signIn("discord")}>
+            <button onClick={() => void signIn("discord")}>
               Login with Discord
             </button>
           )}
