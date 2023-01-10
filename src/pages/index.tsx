@@ -9,8 +9,8 @@ import { api } from '../utils/api'
     const [message, setMessage] = useState("")
 
     const postMessage = api.guestbook.postMessage.useMutation({
-      onMutate: () => {
-        utils.guestbook.getAll.cancel()
+      onMutate: async () => {
+        await utils.guestbook.getAll.cancel()
         const optimisticUpdate = utils.guestbook.getAll.getData()
 
         if (optimisticUpdate) {
